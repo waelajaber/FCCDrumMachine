@@ -18,6 +18,30 @@ audio7.src = "./audio/CYCdh_K1close_SdSt-05.wav";
 audio8.src = "./audio/CYCdh_K1close_SnrOff-06.wav";
 audio9.src = "./audio/CYCdh_K6-Snr01.wav";
 
+const audioLib = {
+    audio1: audio1,
+    audio2: audio2,
+    audio3: audio3,
+    audio4: audio4,
+    audio5: audio5,
+    audio6: audio6,
+    audio7: audio7,
+    audio8: audio8,
+    audio9: audio9,
+}
+
+const keyToAudioMap = {
+    'Q': 'audio1',
+    'W': 'audio2',
+    'E': 'audio3',
+    'A': 'audio4',
+    'S': 'audio5',
+    'D': 'audio6',
+    'Z': 'audio7',
+    'X': 'audio8',
+    'C': 'audio9'
+}
+
 
 class App extends React.Component {
     constructor(props) {
@@ -29,10 +53,19 @@ class App extends React.Component {
     }
 
     handleAudio(e) {
+        console.log(audioLib[e.target.id].play())
+    }
 
+    handleKeyPress() {
+        document.onkeypress = (e) => {
+            let key = e.key.toUpperCase();
+            let audioKey = keyToAudioMap[key];
+            console.log(audioLib[audioKey].play())
+        }
     }
 
     render() {
+        this.handleKeyPress()
         return (
             <React.Fragment>
                 <div id="drum-machine">
@@ -41,27 +74,27 @@ class App extends React.Component {
                     </div>
                     <div id="pad-container">
                         <div className="Row">
-                            <button id="audio1" className="drum-pad" name='Hat' onClick={this.handleAudio}>
+                            <button id="audio1" className="drum-pad" key="Q" name='Hat' onClick={this.handleAudio}>
                                 Q</button>
-                            <button id="audio2" className="drum-pad" name='Cymbal' onClick={this.handleAudio}>
+                            <button id="audio2" className="drum-pad" key="W" name='Cymbal' onClick={this.handleAudio}>
                                 W</button>
-                            <button id="audio3" className="drum-pad" name='Kick' onClick={this.handleAudio}>
+                            <button id="audio3" className="drum-pad" key="E" name='Kick' onClick={this.handleAudio}>
                                 E</button>
                         </div>
                         <div className="Row">
-                            <button id="audio4" className="drum-pad" name='Open Hat' onClick={this.handleAudio}>
+                            <button id="audio4" className="drum-pad" key="A" name='Open Hat' onClick={this.handleAudio}>
                                 A</button>
-                            <button id="audio5" className="drum-pad" name='Pd Hat' onClick={this.handleAudio}>
+                            <button id="audio5" className="drum-pad" key="S" name='Pd Hat' onClick={this.handleAudio}>
                                 S</button>
-                            <button id="audio6" className="drum-pad" name='Rim' onClick={this.handleAudio}>
+                            <button id="audio6" className="drum-pad" key="D" name='Rim' onClick={this.handleAudio}>
                                 D</button>
                         </div>
                         <div className="Row">
-                            <button id="audio7" className="drum-pad" name='SdSt' onClick={this.handleAudio}>
+                            <button id="audio7" className="drum-pad" key="Z" name='SdSt' onClick={this.handleAudio}>
                                 Z</button>
-                            <button id="audio8" className="drum-pad" name='Snare Off' onClick={this.handleAudio}>
+                            <button id="audio8" className="drum-pad" key="X" name='Snare Off' onClick={this.handleAudio}>
                                 X</button>
-                            <button id="audio9" className="drum-pad" name='Snare' onClick={this.handleAudio}>
+                            <button id="audio9" className="drum-pad" key="C" name='Snare' onClick={this.handleAudio}>
                                 C</button>
                         </div>
                     </div>
