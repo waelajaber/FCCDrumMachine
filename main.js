@@ -8,7 +8,6 @@ class App extends React.Component {
         }
 
         this.handleAudio = this.handleAudio.bind(this);
-
     }
 
 
