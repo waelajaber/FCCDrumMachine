@@ -53,14 +53,19 @@ class App extends React.Component {
     }
 
     handleAudio(e) {
-        console.log(audioLib[e.target.id].play())
+        audioLib[e.target.id].play();
+        this.setState({ text: e.target.name })
     }
 
     handleKeyPress() {
         document.onkeypress = (e) => {
             let key = e.key.toUpperCase();
             let audioKey = keyToAudioMap[key];
-            console.log(audioLib[audioKey].play())
+            audioLib[audioKey].play();
+            this.setState(
+                { text: document.getElementById(keyToAudioMap[key]).name }
+            )
+
         }
     }
 
