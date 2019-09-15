@@ -52,6 +52,8 @@ class App extends React.Component {
     }
 
     handleAudio(e) {
+        audioLib[e.target.id].preload = 'meta';
+        audioLib[e.target.id].currentTime = 0;
         audioLib[e.target.id].play();
         this.setState({ text: e.target.name })
     }
@@ -60,6 +62,7 @@ class App extends React.Component {
         document.onkeypress = (e) => {
             let key = e.key.toUpperCase();
             let audioKey = keyToAudioMap[key];
+            audioLib[audioKey].preload = 'meta';
             audioLib[audioKey].currentTime = 0;
             audioLib[audioKey].play();
             this.setState(
