@@ -60,6 +60,7 @@ class App extends React.Component {
         document.onkeypress = (e) => {
             let key = e.key.toUpperCase();
             let audioKey = keyToAudioMap[key];
+            audioLib[audioKey].currentTime = 0;
             audioLib[audioKey].play();
             this.setState(
                 { text: document.getElementById(keyToAudioMap[key]).name }
